@@ -1,0 +1,106 @@
+{% extends '../base.html' %}
+
+{% block title %}Top{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../static/img/fon.jpg");
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .main-card {
+        border: 1px solid purple;
+        background-color: transparent;
+        color: white;
+    }
+
+    .top-ten-views {
+        border: 1px solid purple;
+        background-color: transparent;
+        color: white;
+    }
+
+    .rating-p {
+        background: purple;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-g {
+        background: green;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-o {
+        background: orange;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-gr {
+        background: gray;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+</style>
+    <div class="recommended mt-5 mb-5">
+        <div class="container">
+            {% for v in view %}
+            {% if v.isRecommended %}
+            <div class="card main-card">
+                <div class="card-body">
+                    <h2>{{ v.viewName }}</h2>
+                    {% if v.rating >= 9 %}
+                    <p><b class="rating-p">{{ v.rating }}</b></p>
+                    {% elif v.rating >= 8 %}
+                    <p><b class="rating-g">{{ v.rating }}</b></p>
+                    {% elif v.rating >= 7 %}
+                    <p><b class="rating-o">{{ v.rating }}</b></p>
+                    {% else %}
+                    <p><b class="rating-gr">{{ v.rating }}</b></p>
+                    {%endif %}
+                    <h3>Genre: {{ v.genre.genreName }}</h3>
+                    <p>Description: {{ v.description }}</p>
+                    <a href="{% url 'viewDetail' pk=v.pk %}" class="btn btn-dark">Watch</a>
+                </div>
+            </div>
+            {% else %}
+            <h1>None</h1>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="top-ten">
+        <div class="container">
+            <h2 style="color: white">Top 10</h2>
+            <div class="owl-carousel owl-theme">
+                {% for v in views %}
+                {% if v.isTopTen %}
+                <div class="item">
+                    <div class="card top-ten-views">
+                        <div class="card-body">
+                            <h2>{{ v.viewName }}</h2>
+                            <a href="{% url 'viewDetail' pk=v.pk %}" class="btn btn-outline-light">Watch</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <h1>None</h1>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="text-center mt-4 mb-4">
+                <a href="{% url 'allViews' %}" class="btn btn-dark">See All</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

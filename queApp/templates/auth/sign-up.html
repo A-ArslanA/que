@@ -1,0 +1,54 @@
+{% extends '../base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    #id_username, #id_first_name, #id_last_name, #id_email, #id_password1, #id_password2 {
+        display: block;
+        width: 30%;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        border: 1px solid #000;
+        background: black;
+        color: white;
+    }
+
+    .helptext {
+        display: none;
+    }
+
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../static/img/forest.jpg");
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../static/img/forest.jpg");
+        color: white;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid palegreen;
+        font-size: 14px;
+    }
+</style>
+    <div class="container mt-5 mb-5">
+      <div class="card">
+          <div class="card-body">
+              <h1 class="wow animate__animated animate__fadeIn animate__faster">Sign Up</h1>
+              <form method="post">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button class="btn btn-outline-light">Sign Up</button>
+              </form>
+          </div>
+      </div>
+    </div>
+{% endblock %}

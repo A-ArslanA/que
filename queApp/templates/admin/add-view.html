@@ -1,0 +1,48 @@
+{% extends '../base.html' %}
+
+{% block title %}AddView{% endblock %}
+
+{% block content %}
+<style>
+    #id_viewName, #id_genre, #id_producer, #id_cover, #id_poster, #id_year, #id_rating, #id_mainLink, #id_description, #id_isTopTen, #id_isRecommended  {
+        display: block;
+        width: 80%;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+        background: black;
+        color: white;
+    }
+
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../static/img/forest.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../static/img/forest.jpg");
+        color: white;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid palegreen;
+    }
+</style>
+    <div class="container mt-5 mb-5">
+      <div class="card">
+          <div class="card-body">
+              <h1 class="wow animate__animated animate__fadeIn animate__faster">AddView</h1>
+              <form method="post">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button class="btn btn-dark">AddView</button>
+              </form>
+          </div>
+      </div>
+    </div>
+{% endblock %}

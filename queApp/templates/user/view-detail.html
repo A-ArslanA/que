@@ -1,0 +1,99 @@
+{% extends '../base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url( {{ view.cover }} );
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .main-card {
+        border: 1px solid purple;
+        background-color: transparent;
+        color: white;
+    }
+
+    .error-card {
+        border: 1px solid palegreen;
+        background-color: transparent;
+        color: palegreen;
+        text-align: center;
+    }
+
+    .rating-p {
+        background: purple;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-g {
+        background: green;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-o {
+        background: orange;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+    .rating-gr {
+        background: gray;
+        color: #000;
+        padding: 5px;
+        border-radius: 30%;
+    }
+</style>
+    {% if user.is_authenticated %}
+    <div class="container mt-5 mb-5">
+        <div class="card main-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div style="width: 100%;">
+                            <img src="{{ view.poster }}" width="100%" alt="poster">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h1>{{ view.viewName }}</h1>
+                        {% if view.rating >= 9 %}
+                        <p><b class="rating-p">{{ view.rating }}</b></p>
+                        {% elif view.rating >= 8 %}
+                        <p><b class="rating-g">{{ view.rating }}</b></p>
+                        {% elif view.rating >= 7 %}
+                        <p><b class="rating-o">{{ view.rating }}</b></p>
+                        {% else %}
+                        <p><b class="rating-gr">{{ view.rating }}</b></p>
+                        {%endif %}
+                        <p>Year: <b>{{ view.year }}</b> | Genre: <b>{{ view.genre.genreName }}</b> | Produced by: <b>{{ view.producer }}</b></p>
+                        <p>Description: {{ view.description }}</p>
+                        <a href="#view" class="btn btn-dark">Play <i class="fa-solid fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view" class="container mb-5" data-aos="zoom-in-down" data-aos-easing="linear" data-aos-duration="200">
+        <div class="card main-card">
+            <div class="card-body">
+                <iframe width="100%" height="400" src="{{ view.mainLink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <div class="card error-card" style="margin-top: 30px">
+            <div class="card-body">
+                <h3>Please login to view</h3>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

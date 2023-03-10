@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+#banner h1 {
+    font-size: 45px;
+    font-weight: 400;
+}
+
+#banner p {
+    width: 50%;
+    text-align: justify;
+}
+
+
+@media screen and (max-width: 900px) {
+    .mobile-dark {
+        background-color: black;
+    }
+
+    #banner {
+        text-align: center;
+    }
+
+    #banner p {
+        text-align:center;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #banner h1 {
+        font-size: 28px;
+        font-weight: 400px;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+}
